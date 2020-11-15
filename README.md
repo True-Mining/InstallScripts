@@ -13,4 +13,5 @@ then, execute
 
 #### to start miner in a terminal graphically:
 > bash /home/$USER/TrueMining-XMRig.sh
-_use 'sudo' to run with root permissions
+
+_use 'sudo' to run with root permissions_
