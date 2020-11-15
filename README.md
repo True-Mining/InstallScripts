@@ -1,7 +1,7 @@
 # TrueMining_XMRig-Linux_Install
 
 ### Usage:
-- (Ubuntu 20.04 - Focal Fossa)  
+
 #### to install:
 copy your xmrig config.json to your Desktop. If it doesn't works, copy to /home/$USER/xmrig/
 
