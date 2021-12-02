@@ -185,7 +185,7 @@ echo -e "${GREEN}sudo bash $bashStartFile${NC}"
 if [ $RodarQuandoLigar="yes" ]
 then
     echo
-    echo "${YELLOW}True Mining will start mining hiden as soon as the computer starts${NC}"
+    echo -e "${YELLOW}True Mining will start mining hiden as soon as the computer starts${NC}"
     echo "Disable True Mining at startup with:"
     echo -e "${GREEN}sudo systemctl disable TrueMining-XMRig${NC}"
 fi
