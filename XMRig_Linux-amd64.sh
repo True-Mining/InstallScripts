@@ -132,7 +132,7 @@ echo Name=XMRig with True Mining >> ~/${desktopFolderName}/TrueMining-xmrig.desk
 
     clear
     
-    echo "Run True Mining at startup? (Y/N): "
+    echo "Start hidden mining at system startup? (Y/N): "
     read input
     if [ "$input" = "Y" ]
     then
