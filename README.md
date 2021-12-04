@@ -1,19 +1,26 @@
-# TrueMining_XMRig-Linux_Install
+# TrueMining Install Scripts
+> Other ways to install True Mining outside the official application [True Mining Desktop](https://github.com/True-Mining/TrueMiningDesktop)
 
-## Usage:
+## Linux x64 (amd64/64bits)
 
-### Installation:
-#### Go to the system terminal/console, run the command below and follow the instructions:
+### Install 
 
-> sudo rm -rf TrueMining_XMRig-Linux_Install.sh && wget https://raw.githubusercontent.com/True-Mining/TrueMining_XMRig-Linux_Install/main/TrueMining_XMRig-Linux_Install.sh && sudo chmod 777 TrueMining_XMRig-Linux_Install.sh && ./TrueMining_XMRig-Linux_Install.sh
-
----
+On terminal/console put command, type ENTER and follow instructions:
+```
+sudo rm -rf TrueMining_XMRig-Linux_Install.sh && wget https://raw.githubusercontent.com/True-Mining/TrueMining_XMRig-Linux_Install/main/TrueMining_XMRig-Linux_Install.sh && sudo chmod 777 TrueMining_XMRig-Linux_Install.sh && ./TrueMining_XMRig-Linux_Install.sh
+```
 
 ### Disable autorun at system startup
-> sudo systemctl disable TrueMining-XMRig
+```
+sudo systemctl disable TrueMining-XMRig
+```
 
-### Start True Mining - XMRig with the command bellow:
-> bash ~/TrueMining-XMRig.sh
+### Start True Mining - XMRig as current user
+```
+bash ~/TrueMining-XMRig.sh
+```
 
-### Start with sudo (better hashrate):
-> sudo bash ~/TrueMining-XMRig.sh
+### Start True Mining - XMRig as sudo (better hashrate):
+```
+sudo bash ~/TrueMining-XMRig.sh
+```
