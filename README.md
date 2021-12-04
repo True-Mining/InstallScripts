@@ -7,7 +7,7 @@
 
 On terminal/console put command, type ENTER and follow instructions:
 ```
-bash <(curl -s https://raw.githubusercontent.com/True-Mining/TrueMining_XMRig-Linux_Install/main/TrueMining_XMRig-Linux_Install.sh)
+bash <(curl -s https://raw.githubusercontent.com/True-Mining/InstallScripts/main/XMRig_Linux-amd64.sh)
 ```
 
 ### Disable autorun at system startup
