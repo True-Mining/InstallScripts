@@ -1,4 +1,4 @@
-# TrueMining Install Scripts
+# True Mining Install Scripts
 > Other ways to install True Mining outside the official application [True Mining Desktop](https://github.com/True-Mining/TrueMiningDesktop)
 
 ## Linux x64 (amd64/64bits)
