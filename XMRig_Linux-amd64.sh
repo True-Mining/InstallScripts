@@ -1,7 +1,7 @@
 xmrigReleasesDownloadSite=https://github.com/xmrig/xmrig/releases/download/
-xmrigVersionName=v6.16.1
-xmrigZipedPackageName=xmrig-6.16.1-linux-static-x64.tar.gz
-xmrigExtractedFolderName=xmrig-6.16.1
+xmrigVersionName=v6.16.2
+xmrigZipedPackageName=xmrig-6.16.2-linux-static-x64.tar.gz
+xmrigExtractedFolderName=xmrig-6.16.2
 xmrigExecutableFileName=xmrig
 
 bashStartFile=~/TrueMining-XMRig.sh
