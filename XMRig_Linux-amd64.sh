@@ -104,28 +104,28 @@ test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && source ${XDG_CONFIG_HOME
 
 if [ ! -z "{$XDG_DESKTOP_DIR}" ]
 then
-    desktopFolderName=$'$XDG_DESKTOP_DIR'
-elif [ ! -d '~/Desktop' ]
+    desktopFolderName=$"$XDG_DESKTOP_DIR"
+elif [ ! -d "~/Desktop" ]
 then
-    desktopFolderName=Desktop
-elif [ ! -d '~/Área de Trabalho' ]
+    desktopFolderName="~/Desktop"
+elif [ ! -d "~/Área de Trabalho" ]
 then
-    desktopFolderName=Área de Trabalho
+    desktopFolderName="~/Área de Trabalho"
 else
-    desktopFolderName=Desktop
+    desktopFolderName="~/Desktop"
 fi
 
-rm -rf ~/${desktopFolderName}/TrueMining-xmrig.desktop
+rm -rf ${desktopFolderName}/TrueMining-xmrig.desktop
 
-echo > ~/${desktopFolderName}/TrueMining-xmrig.desktop
+echo > ${desktopFolderName}/TrueMining-xmrig.desktop
 
-echo '#!/usr/bin/env xdg-open' >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
-echo [Desktop Entry] >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
-echo Version=1.0 >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
-echo Type=Application >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
-echo Terminal=true >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
-echo Exec=sudo bash "$bashStartFile" >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
-echo Name=XMRig with True Mining >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
+echo '#!/usr/bin/env xdg-open' >> ${desktopFolderName}/TrueMining-xmrig.desktop
+echo [Desktop Entry] >> ${desktopFolderName}/TrueMining-xmrig.desktop
+echo Version=1.0 >> ${desktopFolderName}/TrueMining-xmrig.desktop
+echo Type=Application >> ${desktopFolderName}/TrueMining-xmrig.desktop
+echo Terminal=true >> ${desktopFolderName}/TrueMining-xmrig.desktop
+echo Exec=sudo bash "$bashStartFile" >> ${desktopFolderName}/TrueMining-xmrig.desktop
+echo Name=XMRig with True Mining >> ${desktopFolderName}/TrueMining-xmrig.desktop
 
 clear
 
