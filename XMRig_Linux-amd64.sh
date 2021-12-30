@@ -115,17 +115,17 @@ else
     desktopFolderName="~/Desktop"
 fi
 
-rm -rf ${desktopFolderName}/TrueMining-xmrig.desktop
+rm -rf "$desktopFolderName"/TrueMining-xmrig.desktop
 
-echo > ${desktopFolderName}/TrueMining-xmrig.desktop
+echo > "$desktopFolderName"/TrueMining-xmrig.desktop
 
-echo '#!/usr/bin/env xdg-open' >> ${desktopFolderName}/TrueMining-xmrig.desktop
-echo [Desktop Entry] >> ${desktopFolderName}/TrueMining-xmrig.desktop
-echo Version=1.0 >> ${desktopFolderName}/TrueMining-xmrig.desktop
-echo Type=Application >> ${desktopFolderName}/TrueMining-xmrig.desktop
-echo Terminal=true >> ${desktopFolderName}/TrueMining-xmrig.desktop
-echo Exec=sudo bash "$bashStartFile" >> ${desktopFolderName}/TrueMining-xmrig.desktop
-echo Name=XMRig with True Mining >> ${desktopFolderName}/TrueMining-xmrig.desktop
+echo '#!/usr/bin/env xdg-open' >> "$desktopFolderName"/TrueMining-xmrig.desktop
+echo [Desktop Entry] >> "$desktopFolderName"/TrueMining-xmrig.desktop
+echo Version=1.0 >> "$desktopFolderName"/TrueMining-xmrig.desktop
+echo Type=Application >> "$desktopFolderName"/TrueMining-xmrig.desktop
+echo Terminal=true >> "$desktopFolderName"/TrueMining-xmrig.desktop
+echo Exec=sudo bash "$bashStartFile" >> "$desktopFolderName"/TrueMining-xmrig.desktop
+echo Name=XMRig with True Mining >> "$desktopFolderName"/TrueMining-xmrig.desktop
 
 clear
 
