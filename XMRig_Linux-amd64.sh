@@ -104,7 +104,7 @@ test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && source ${XDG_CONFIG_HOME
 
 if [ ! -z "{$XDG_DESKTOP_DIR}" ]
 then
-    desktopFolderName=$(basename $XDG_DESKTOP_DIR)
+    desktopFolderName=$'$XDG_DESKTOP_DIR'
 elif [ ! -d '~/Desktop' ]
 then
     desktopFolderName=Desktop
