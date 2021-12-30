@@ -51,7 +51,7 @@ then
     fi
 fi
 
-if [ -f $instaledXmrigFolder/config.json ]
+if ! [ -f $instaledXmrigFolder/config.json ]
 then
     while ! [ -f $instaledXmrigFolder/config.json ]
     do
