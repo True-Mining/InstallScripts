@@ -102,7 +102,7 @@ echo ./xmrig >> $bashStartFile &
 
 test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && source ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs
 
-if [ -v XDG_DESKTOP_DIR ]
+if [ ! -z "{$XDG_DESKTOP_DIR}" ]
 then
     desktopFolderName=$(basename $XDG_DESKTOP_DIR)
 elif [ ! -d '~/Desktop' ]
