@@ -34,68 +34,65 @@ then
     mkdir $instaledXmrigFolder
 fi
 
-\cp -f "$xmrigExtractedFolderName/$xmrigExecutableFileName" $instaledXmrigFolder/xmrig
+cp -f "$xmrigExtractedFolderName/$xmrigExecutableFileName" $instaledXmrigFolder/xmrig
 
 rm -rf "$xmrigZipedPackageName"
 rm -rf "$xmrigExtractedFolderName"
 
 clear
 
+if [ -f $instaledXmrigFolder/config.json ]
+then
     echo -n "Delete old config file? (Y/N): "
     read input
     if [ "$input" = "Y" ]
     then
         rm -rf $instaledXmrigFolder/config.json
-
-        while ! [ -f $instaledXmrigFolder/config.json ]
-        do
-            rm -rf $instaledXmrigFolder/config.json
-            wget -T 15 -c https://truemining.online/docs/example-xmrig-config.json -O $instaledXmrigFolder/config.json && break
-        done
-
-        clear
-
-        while grep -q "coinTicker" "$instaledXmrigFolder/config.json"
-        do
-            echo "Select coin to receive payment:"
-            echo "(1) Dogecoin - DOGE"
-            echo "(2) Digibyte - DGB"
-            echo "(3) RDCToken - RDCT"
-            echo ""
-            echo -n "Type a number: "
-
-            read input
-
-            if [ "$input" = "1" ]
-            then
-                sed -i 's/coinTicker/doge/g' $instaledXmrigFolder/config.json
-            elif [ "$input" = "2" ]
-            then
-                sed -i 's/coinTicker/dgb/g' $instaledXmrigFolder/config.json
-            elif [ "$input" = "3" ]
-            then
-                sed -i 's/coinTicker/rdct/g' $instaledXmrigFolder/config.json
-            else
-                clear
-                echo "Invalid number, try again"
-            fi
-        done
-
-        clear
-
-        while grep -q "paymentAddress" $instaledXmrigFolder/config.json
-        do
-            echo "Type your payment address."
-            echo -e "${YELLOW}ATENTION, INVALID/WRONG ADDRESSES CAN'T RECEIVE PAYMENTS.${NC}"
-            echo 
-            echo -n "Payment address: "
-
-            read input
-
-            sed -i "s/paymentAddress/$input/g" $instaledXmrigFolder/config.json
-
-        done
     fi
+fi
+
+if [ -f $instaledXmrigFolder/config.json ]
+then
+    while ! [ -f $instaledXmrigFolder/config.json ]
+    do
+        rm -rf $instaledXmrigFolder/config.json
+        wget -T 15 -c https://truemining.online/docs/example-xmrig-config.json -O $instaledXmrigFolder/config.json && break
+    done
+    clear
+    while grep -q "coinTicker" "$instaledXmrigFolder/config.json"
+    do
+        echo "Select coin to receive payment:"
+        echo "(1) Dogecoin - DOGE"
+        echo "(2) Digibyte - DGB"
+        echo "(3) RDCToken - RDCT"
+        echo ""
+        echo -n "Type a number: "
+        read input
+        if [ "$input" = "1" ]
+        then
+            sed -i 's/coinTicker/doge/g' $instaledXmrigFolder/config.json
+        elif [ "$input" = "2" ]
+        then
+            sed -i 's/coinTicker/dgb/g' $instaledXmrigFolder/config.json
+        elif [ "$input" = "3" ]
+        then
+            sed -i 's/coinTicker/rdct/g' $instaledXmrigFolder/config.json
+        else
+            clear
+            echo "Invalid number, try again"
+        fi
+    done
+    clear
+    while grep -q "paymentAddress" $instaledXmrigFolder/config.json
+    do
+        echo "Type your payment address."
+        echo -e "${YELLOW}ATENTION, INVALID/WRONG ADDRESSES CAN'T RECEIVE PAYMENTS.${NC}"
+        echo 
+        echo -n "Payment address: "
+        read input
+        sed -i "s/paymentAddress/$input/g" $instaledXmrigFolder/config.json
+    done
+fi
 
 rm -rf $bashStartFile
 echo #!/bin/bash >> $bashStartFile
@@ -108,10 +105,10 @@ test -f ${XDG_CONFIG_HOME:-~/.config}/user-dirs.dirs && source ${XDG_CONFIG_HOME
 if [ -v XDG_DESKTOP_DIR ]
 then
     desktopFolderName=$(basename $XDG_DESKTOP_DIR)
-elif [ ! -d "~/Desktop" ]
+elif [ ! -d '~/Desktop' ]
 then
     desktopFolderName=Desktop
-elif [ ! -d "~/Área de Trabalho" ]
+elif [ ! -d '~/Área de Trabalho' ]
 then
     desktopFolderName=Área de Trabalho
 else
@@ -130,48 +127,43 @@ echo Terminal=true >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
 echo Exec=sudo bash "$bashStartFile" >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
 echo Name=XMRig with True Mining >> ~/${desktopFolderName}/TrueMining-xmrig.desktop
 
-    clear
-    
-    echo "Start hidden mining at system startup? (Y/N): "
-    read input
-    if [ "$input" = "Y" ]
-    then
-        RodarQuandoLigar="yes"
+clear
 
-        sudo rm -rf /etc/systemd/system/TrueMining-XMRig.service
-        sudo rm -rf $instaledXmrigFolder/service
-
-        echo [Unit] >> $instaledXmrigFolder/service
-        echo Description=True Mining Running XMRig >> $instaledXmrigFolder/service
-        echo  >> $instaledXmrigFolder/service
-        echo [Service] >> $instaledXmrigFolder/service
-        echo Type=idle >> $instaledXmrigFolder/service
-        echo ExecStart=bash "$bashStartFile" >> $instaledXmrigFolder/service
-        echo Terminal=true >> $instaledXmrigFolder/service
-        echo Restart=on-failure >> $instaledXmrigFolder/service
-        echo User="$USER" >> $instaledXmrigFolder/service
-        echo RestartSec=10 >> $instaledXmrigFolder/service
-        echo  >> $instaledXmrigFolder/service
-        echo [Unit] >> $instaledXmrigFolder/service
-        echo Wants=network-online.target >> $instaledXmrigFolder/service
-        echo After=network-online.target >> $instaledXmrigFolder/service
-        echo  >> $instaledXmrigFolder/service
-        echo [Install] >> $instaledXmrigFolder/service
-        echo WantedBy=multi-user.target >> $instaledXmrigFolder/service
-
-        sudo cp $instaledXmrigFolder/service /etc/systemd/system/TrueMining-XMRig.service
-
-        sudo chmod -R 755 $instaledXmrigFolder
-        sudo chmod 755 $bashStartFile
-        sudo chmod 755 $instaledXmrigFolder/service
-        sudo chmod 755 /etc/systemd/system/TrueMining-XMRig.service
-
-        sudo systemctl daemon-reload
-        sudo systemctl enable TrueMining-XMRig
-    else
-        RodarQuandoLigar="no"
-        sudo systemctl disable TrueMining-XMRig
-    fi
+echo "Start hidden mining at system startup? (Y/N): "
+read input
+if [ "$input" = "Y" ]
+then
+    RodarQuandoLigar="yes"
+    sudo rm -rf /etc/systemd/system/TrueMining-XMRig.service
+    sudo rm -rf $instaledXmrigFolder/service
+    echo [Unit] >> $instaledXmrigFolder/service
+    echo Description=True Mining Running XMRig >> $instaledXmrigFolder/service
+    echo  >> $instaledXmrigFolder/service
+    echo [Service] >> $instaledXmrigFolder/service
+    echo Type=idle >> $instaledXmrigFolder/service
+    echo ExecStart=bash "$bashStartFile" >> $instaledXmrigFolder/service
+    echo Terminal=true >> $instaledXmrigFolder/service
+    echo Restart=on-failure >> $instaledXmrigFolder/service
+    echo User="$USER" >> $instaledXmrigFolder/service
+    echo RestartSec=10 >> $instaledXmrigFolder/service
+    echo  >> $instaledXmrigFolder/service
+    echo [Unit] >> $instaledXmrigFolder/service
+    echo Wants=network-online.target >> $instaledXmrigFolder/service
+    echo After=network-online.target >> $instaledXmrigFolder/service
+    echo  >> $instaledXmrigFolder/service
+    echo [Install] >> $instaledXmrigFolder/service
+    echo WantedBy=multi-user.target >> $instaledXmrigFolder/service
+    sudo cp $instaledXmrigFolder/service /etc/systemd/system/TrueMining-XMRig.service
+    sudo chmod -R 755 $instaledXmrigFolder
+    sudo chmod 755 $bashStartFile
+    sudo chmod 755 $instaledXmrigFolder/service
+    sudo chmod 755 /etc/systemd/system/TrueMining-XMRig.service
+    sudo systemctl daemon-reload
+    sudo systemctl enable TrueMining-XMRig
+else
+    RodarQuandoLigar="no"
+    sudo systemctl disable TrueMining-XMRig
+fi
 
 clear
 
