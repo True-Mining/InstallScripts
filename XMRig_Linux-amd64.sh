@@ -64,7 +64,7 @@ then
         echo "Select coin to receive payment:"
         echo "(1) Dogecoin - DOGE"
         echo "(2) Digibyte - DGB"
-        echo "(3) RDCToken - RDCT"
+        echo "(3) Ravencoin - RVN"
         echo ""
         echo -n "Type a number: "
         read input
@@ -76,7 +76,7 @@ then
             sed -i 's/coinTicker/dgb/g' $instaledXmrigFolder/config.json
         elif [ "$input" = "3" ]
         then
-            sed -i 's/coinTicker/rdct/g' $instaledXmrigFolder/config.json
+            sed -i 's/coinTicker/rvn/g' $instaledXmrigFolder/config.json
         else
             clear
             echo "Invalid number, try again"
